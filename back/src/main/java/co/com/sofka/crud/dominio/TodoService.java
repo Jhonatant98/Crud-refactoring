@@ -1,7 +1,6 @@
-package co.com.sofka.crud.Service;
+package co.com.sofka.crud.dominio;
 
-import co.com.sofka.crud.Entity.Todo;
-import co.com.sofka.crud.Repository.TodoRepository;
+import co.com.sofka.crud.Persistencia.Todo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +23,7 @@ public class TodoService {
     }
 
     public Todo get(Long id){
-         return repository.findById(id).orElseThrow();
+        return repository.findById(id).orElseThrow();
     }
 
 }

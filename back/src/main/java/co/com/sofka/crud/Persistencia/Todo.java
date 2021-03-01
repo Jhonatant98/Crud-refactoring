@@ -1,14 +1,21 @@
-package co.com.sofka.crud.Entity;
+package co.com.sofka.crud.Persistencia;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 @Entity
 public class Todo {
     @Id
     @GeneratedValue
     private Long id;
+    @NotNull
+    @NotEmpty(message = "The name is mandatory")
+    @Pattern(regexp = "[A-Za-z0-9]+@¿?!¡()", message = "The name cannot have special characters")
     private String name;
     private boolean completed;
     private String groupListId;
