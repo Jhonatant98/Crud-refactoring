@@ -1,6 +1,4 @@
 package co.com.sofka.crud.dominio;
-
-import co.com.sofka.crud.Persistencia.Todo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,20 +8,22 @@ public class TodoService {
     @Autowired
     private TodoRepository repository;
 
-    public Iterable<Todo> list(){
-        return repository.findAll();
+    public Iterable<TodoDTO> list(){
+     return UtilDTO.listTodoDTO(repository.findAll());
     }
 
-    public Todo save(Todo todo){
-        return repository.save(todo);
+    public TodoDTO save(TodoDTO todo){
+        TodoDTO todoC = UtilDTO.convertTodoToTodoDTO(repository.save(UtilDTO.covertTodoDTOToTodo(todo)));
+        return todoC;
     }
 
     public void delete(Long id){
-        repository.delete(get(id));
+        repository.deleteById(id);
     }
 
-    public Todo get(Long id){
-        return repository.findById(id).orElseThrow();
+    public TodoDTO get(Long id){
+
+        return UtilDTO.convertTodoToTodoDTO(repository.findById(id).orElseThrow());
     }
 
 }

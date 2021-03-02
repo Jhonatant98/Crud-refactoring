@@ -1,22 +1,18 @@
-package co.com.sofka.crud.Persistencia;
+package co.com.sofka.crud.dominio;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
+public class TodoDTO {
 
-@Entity
-public class Todo {
-    @Id
-    @GeneratedValue
     private Long id;
-    @NotNull
-    @NotEmpty(message = "The name is mandatory")
     private String name;
     private boolean completed;
     private String groupListId;
+
+    public TodoDTO(Long id, String name, boolean completed, String groupListId) {
+        this.id = id;
+        this.name = name;
+        this.completed = completed;
+        this.groupListId = groupListId;
+    }
 
     public String getGroupListId() {
         return groupListId;
@@ -49,4 +45,5 @@ public class Todo {
     public void setCompleted(boolean completed) {
         this.completed = completed;
     }
+
 }
